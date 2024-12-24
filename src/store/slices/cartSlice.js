@@ -10,11 +10,13 @@ const CartSlice = createSlice({
   reducers: {
     addItemToCart: (state, action) => {
       //destructuring
-      const  {id, name, price} = action.payload;
+      const  {id, title, description, image, price} = action.payload;
       const checkId = state.items.findIndex((ele) => ele.id === id);
       const productData = {
         id,
-        name,
+        name: title,
+        description,
+        image,
         price,
         quantity:1
       };
