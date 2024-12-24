@@ -26,13 +26,26 @@ const CartSlice = createSlice({
       else {
         state.items.forEach((ele) => {
           if(ele.id === id) {
-            ele.quantity = ele.quantity + 1;
+            if(action?.meta?.type === 'increment') {
+              ele.quantity = ele.quantity + 1;
+            }
+            else {
+              ele.quantity -= 1;
+            }
           }
         })
       }
+      console.log(state.items);
+    },
+
+    removeItemFromCart: (state, action) => {
+      const id = action.payload.id;
+      let newArray = state.items.filter((product) => product.id !== id);
+      console.log(newArray);
+      
     }
   }
 })
 
-export const {addItemToCart} = CartSlice.actions;
+export const {addItemToCart, removeItemFromCart} = CartSlice.actions;
 export const CartSliceReducers = CartSlice.reducer;

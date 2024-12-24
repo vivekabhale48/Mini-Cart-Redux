@@ -17,7 +17,12 @@ export const HomePageSection = React.memo(() => {
     }, []);
 
     function handleAddToCartClick(ele) {
-        dispatch(addItemToCart(ele));
+        // dispatch(addItemToCart(ele));
+        dispatch({
+            type: 'cart/addItemToCart',
+            payload: ele,
+            meta: {type: 'increment'}
+        })
     }
 
     return (
