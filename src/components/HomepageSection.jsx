@@ -29,7 +29,7 @@ export const HomePageSection = React.memo(() => {
         <div>
             <div className="products-section">
                 <h1 className="text-3xl font-bold text-center">Products</h1>
-                <div className="mt-5">
+                <div className="mt-5 plp-section">
                     <PlpSection apiItems={apiItems} handleAddCart={handleAddToCartClick} />
                 </div>
             </div>
