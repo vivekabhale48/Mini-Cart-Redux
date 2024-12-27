@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PlpSection } from './PlpSection';
 import { fetchProducts } from '../store/slices/productSlice';
 import { addItemToCart } from '../store/slices/cartSlice';
+import { LoadingComponent } from './LoadingComponent';
 
 export const HomePageSection = React.memo(() => {
 
@@ -21,17 +22,25 @@ export const HomePageSection = React.memo(() => {
         dispatch({
             type: 'cart/addItemToCart',
             payload: ele,
-            meta: {type: 'increment'}
+            meta: { type: 'increment' }
         })
     }
 
     return (
         <div>
             <div className="products-section">
-                <h1 className="text-3xl font-bold text-center">Products</h1>
-                <div className="mt-5 plp-section">
-                    <PlpSection apiItems={apiItems} handleAddCart={handleAddToCartClick} />
-                </div>
+                {
+                    loading ? (
+                        <LoadingComponent />
+                    ) : (
+                        <>
+                            <h1 className="text-3xl font-bold text-center">Products</h1>
+                            <div className="mt-5 plp-section">
+                                <PlpSection apiItems={apiItems} handleAddCart={handleAddToCartClick} />
+                            </div>
+                        </>
+                    )
+                }
             </div>
         </div>
     )
