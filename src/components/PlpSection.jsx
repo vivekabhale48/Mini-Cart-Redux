@@ -1,3 +1,5 @@
+import { LazyLoadComponent, LazyLoadImage } from "react-lazy-load-image-component"
+
 export const PlpSection = ({apiItems, handleAddCart}) => {
 
     return (
@@ -7,11 +9,17 @@ export const PlpSection = ({apiItems, handleAddCart}) => {
             key={product.id}
             className="border rounded-lg shadow-lg p-4 flex flex-col items-center justify-between hover:shadow-xl transition-shadow mb-5"
           >
-            <img
-              src={product.image}
-              alt={product.title}
-              className="h-40 w-40 object-contain mb-4"
-            />
+            <div>
+              <LazyLoadImage
+                style={{width: '200px', height: '200px', objectFit: 'contain', marginBottom: '4px' }}
+                src={product.image}
+                alt={product.title}
+                width={160}
+                height={160}
+                // className={`w-50 h-50 `}
+                loading="lazy"
+              />
+            </div>
             <h2 className="text-lg font-semibold text-center mb-2">
               {product.title}
             </h2>
